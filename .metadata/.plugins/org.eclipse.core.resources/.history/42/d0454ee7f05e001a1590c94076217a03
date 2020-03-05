@@ -1,0 +1,37 @@
+package com.example.demo.util;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepo;
+
+public class CustomAuthenticationManager implements AuthenticationManager{
+	@Autowired
+	UserRepo userRepo;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		 	String userName = authentication.getPrincipal() + "";
+		    String password = authentication.getCredentials() + "";
+
+		    User user = userRepo.findByuserName(userName);
+		    if (user == null) {
+		    	throw new BadCredentialsException("1000");
+		    }
+		    if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
+		    	throw new BadCredentialsException("1000");
+		    }
+		  
+		    return new UsernamePasswordAuthenticationToken(userName, null);
+	}
+
+}

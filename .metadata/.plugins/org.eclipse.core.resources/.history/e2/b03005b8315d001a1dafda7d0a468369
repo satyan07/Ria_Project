@@ -1,0 +1,67 @@
+//package com.example.demo.repository;
+//
+//import java.util.List;
+//
+//import org.hibernate.Session;
+//import org.hibernate.SessionFactory;
+//import org.hibernate.query.Query;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Repository;
+//
+//import com.example.demo.entity.User;
+//
+//@Repository
+//public class UserRepositoryImpl implements UserRepository {
+//	
+//	@Autowired
+//	SessionFactory sessionFactory;
+//
+//	@Override
+//	public List<User> getUser() {
+//		Session current = sessionFactory.getCurrentSession();
+//		Query<User> query = current.createQuery("from users", User.class);
+//		
+//		List< User> userList = query.getResultList();
+//		return userList;
+//		
+//		}
+//
+//	@Override
+//	public User getUser(int id) {
+//		Session current = sessionFactory.getCurrentSession();
+//		User user = current.get(User.class, id);
+//		return user;
+//		
+//	}
+//
+//	@Override
+//	public void saveUser(User user) {
+//		Session current = sessionFactory.getCurrentSession();
+//		current.saveOrUpdate(user);
+//		
+//	}
+//
+//	@Override
+//	public void delete(User user) {
+//		Session current = sessionFactory.getCurrentSession();
+//		current.delete(user);
+//		
+//	}
+//	
+//	@Override
+//	public boolean isUserExist(User user) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Query query = session.createQuery("from users where id =" + user.getId() + ";");
+//		@SuppressWarnings("unchecked")
+//		List<User> list = query.getResultList();
+//		if (list.size() == 0) {
+//			return false;
+//		}
+//		else
+//			return true;
+//		
+//	
+//	
+//
+//}
+//}

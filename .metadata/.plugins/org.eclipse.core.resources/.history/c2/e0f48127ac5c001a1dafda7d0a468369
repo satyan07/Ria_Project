@@ -1,0 +1,16 @@
+package com.example.repository;
+
+import java.util.List;
+
+import com.example.entity.User;
+
+public interface UserRepository {
+	
+
+	public List<User> getCustomer();
+	public User getUser(int id);
+	public void saveUser(User user);
+	public void delete(User customer);
+
+
+}

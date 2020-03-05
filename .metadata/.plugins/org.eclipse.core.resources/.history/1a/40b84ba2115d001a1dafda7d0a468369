@@ -1,0 +1,47 @@
+package com.example.service;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.entity.User;
+import com.example.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	public UserRepository userRepository;;
+
+	@Override
+	@Transactional
+	public List<User> getUser() {
+		return  userRepository.getUser();
+		
+	}
+
+	@Override
+	@Transactional
+	public void saveCustomer(User user) {
+		userRepository.saveUser(user);
+	}
+
+	@Override
+	@Transactional 
+	public User getUser(int id) {
+		return userRepository.getUser(id);
+	}
+
+	@Override
+	@Transactional
+	public void delete(User user) {
+		userRepository.delete(user);
+	}
+
+
+	
+
+}
