@@ -73,6 +73,7 @@ public class UserContoller {
 		User user = userService.getUser(id);
 		if (user != null) {
 			String city = user.getCity();
+			city = city.replaceAll(" ", "+");
 			Object weather = restTemplate.getForObject(
 					"http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" +apiKey
 					, Object.class);
